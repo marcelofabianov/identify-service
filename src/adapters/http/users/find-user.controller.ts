@@ -22,8 +22,9 @@ export class FindUserController implements ControllerInterface {
             }
             if (error instanceof Error) {
                 reply.code(500).send({
-                    message: 'Internal server error',
+                    error: 'Internal server error',
                     uri: UserUriEnum.FIND_USER,
+                    statusCode: 500,
                 })
             }
         }

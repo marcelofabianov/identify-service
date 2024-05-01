@@ -19,8 +19,9 @@ export class CreateUserController implements ControllerInterface {
             }
             if (error instanceof Error) {
                 reply.code(500).send({
-                    message: 'Internal server error',
+                    error: 'Internal server error',
                     uri: UserUriEnum.CREATE_USER,
+                    statusCode: 500,
                 })
             }
         }
