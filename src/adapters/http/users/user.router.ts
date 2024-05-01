@@ -9,6 +9,7 @@ export class UserRouter implements RouterInterface {
         private findUserController: ControllerInterface,
         private findAllUserController: ControllerInterface,
         private deleteUserController: ControllerInterface,
+        private updateUserController: ControllerInterface,
     ) {}
 
     public register = (fastify: FastifyInstance, _: unknown, done: () => void): void => {
@@ -16,6 +17,7 @@ export class UserRouter implements RouterInterface {
         fastify.get(UserUriEnum.FIND_USER, (req, reply) => this.findUserController.handle(req, reply))
         fastify.get(UserUriEnum.FIND_ALL_USER, (req, reply) => this.findAllUserController.handle(req, reply))
         fastify.delete(UserUriEnum.DELETE_USER, (req, reply) => this.deleteUserController.handle(req, reply))
+        fastify.put(UserUriEnum.UPDATE_USER, (req, reply) => this.updateUserController.handle(req, reply))
 
         done()
     }

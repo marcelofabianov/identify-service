@@ -6,4 +6,5 @@ export enum UserErrorEnum {
     FIND_USER_BY_ID = 'error_find_user_by_id',
     FIND_ALL_USERS = 'error_find_all_users',
     DELETE_USER = 'error_delete_user',
+    UPDATE_USER = 'error_update_user',
 }
