@@ -1,5 +1,5 @@
-import { UserDTO } from '@/entities/dto/user.dto'
+import { CreateUserRequest } from './create-user.request'
 
 export interface CreateUserUseCaseInterface {
-    execute(data: UserDTO): Promise<void>
+    execute(request: CreateUserRequest): Promise<void>
 }

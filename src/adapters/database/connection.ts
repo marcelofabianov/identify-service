@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import { DatabaseInterface } from './database.interface'
+import { ConnectionInterface } from './connection.interface'
 
-export class Database implements DatabaseInterface {
+export class Connection implements ConnectionInterface {
     constructor(private db: PrismaClient) {}
 
     get(): PrismaClient {

@@ -1,12 +1,16 @@
 import fastify, { FastifyInstance } from 'fastify'
+import { UserRouter } from './adapters/http/users/user.router'
+import { Container } from './containers/container'
 
-const app: FastifyInstance = fastify({ logger: false })
+const serverStart = async (container: Container) => {
+    const app: FastifyInstance = fastify({ logger: false })
 
-app.get('/', async (_, reply) => {
-    reply.code(200).send({ message: 'Hello World' })
-})
+    registerRouters(app, container)
 
-const serverStart = async () => {
+    app.get('/', async (_, reply) => {
+        reply.code(200).send({ message: 'Hello World' })
+    })
+
     try {
         await app.listen({ port: 3333 })
         console.log('Server is running on http://localhost:3333')
@@ -16,4 +20,11 @@ const serverStart = async () => {
     }
 }
 
-export { app, serverStart }
+function registerRouters(app: FastifyInstance, container: Container): Container {
+    const userRouter = container.get('UserRouter') as UserRouter
+    app.register(userRouter.register, { prefix: '/api/users' })
+
+    return container
+}
+
+export { serverStart }

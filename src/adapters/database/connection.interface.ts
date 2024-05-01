@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
 
-export interface DatabaseInterface {
+export interface ConnectionInterface {
     get(): PrismaClient
 }
