@@ -2,7 +2,7 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { ControllerInterface } from '../controller.interface'
 import { CreateUserRequest } from '@/adapters/http/users/create-user.request'
 import { CreateUserUseCaseInterface } from '@/useCases/create-user/create-user.use-case-interface'
-import { ErrorHandle } from '@/errors/ErrorHandle'
+import { ErrorHandle } from '@/errors/error-handle'
 import { UserUriEnum } from './user-uri.enum'
 
 export class CreateUserController implements ControllerInterface {

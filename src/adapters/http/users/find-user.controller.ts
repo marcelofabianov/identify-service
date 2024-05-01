@@ -1,5 +1,5 @@
 import { ControllerInterface } from '../controller.interface'
-import { ErrorHandle } from '@/errors/ErrorHandle'
+import { ErrorHandle } from '@/errors/error-handle'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { UserRepositoryInterface } from '@/repositories/user.repository-interface'
 import { UserUriEnum } from './user-uri.enum'

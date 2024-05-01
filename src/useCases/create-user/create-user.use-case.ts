@@ -3,7 +3,7 @@ import { CreateUserRepositoryInterface } from './create-user.repository-interfac
 import { UserErrorEnum } from '@/errors/user.error-enum'
 import { CreateUserRequestInterface } from './create-user.request-interface'
 import { randomUUID } from 'crypto'
-import { ErrorHandle } from '@/errors/ErrorHandle'
+import { ErrorHandle } from '@/errors/error-handle'
 import { CreateUserResponseInterface } from './create-user.response-interface'
 import { UserDTO } from '@/entities/dto/user.dto'
 

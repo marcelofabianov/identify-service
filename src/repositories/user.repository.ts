@@ -2,7 +2,7 @@ import { UserDTO } from '@/entities/dto/user.dto'
 import { UserRepositoryInterface } from './user.repository-interface'
 import { ConnectionInterface } from '@/adapters/database/connection.interface'
 import { UserErrorEnum } from '@/errors/user.error-enum'
-import { ErrorHandle } from '@/errors/ErrorHandle'
+import { ErrorHandle } from '@/errors/error-handle'
 import { UserInterface } from '@/entities/user.interface'
 import { User } from '@/entities/user'
 

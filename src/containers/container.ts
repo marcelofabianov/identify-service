@@ -1,4 +1,4 @@
-import { ErrorHandle } from '@/errors/ErrorHandle'
+import { ErrorHandle } from '@/errors/error-handle'
 
 export class Container {
     private readonly container: Record<string, unknown>

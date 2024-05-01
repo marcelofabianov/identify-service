@@ -1,4 +1,4 @@
-import { ErrorHandle } from '@/errors/ErrorHandle'
+import { ErrorHandle } from '@/errors/error-handle'
 import { FindUserRepositoryInterface } from './find-user.repository-interface'
 import { FindUserResponseInterface } from './find-user.response-interface'
 import { FindUserUseCaseInterface } from './find-user.use-case-interface'
