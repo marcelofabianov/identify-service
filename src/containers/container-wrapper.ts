@@ -1,6 +1,7 @@
 import { ErrorHandle } from '@/errors/error-handle'
+import { ContainerWrapperInterface } from './container-wrapper.interface'
 
-export class Container {
+export class ContainerWrapper implements ContainerWrapperInterface {
     private readonly container: Record<string, unknown>
 
     constructor() {

@@ -1,5 +1,4 @@
 import { ConnectionInterface } from '@/adapters/database/connection.interface'
-import { Container } from './container'
 import { UserRepository } from '@/repositories/user.repository'
 import { CreateUserUseCase } from '@/useCases/create-user/create-user.use-case'
 import { CreateUserUseCaseInterface } from '@/useCases/create-user/create-user.use-case-interface'
@@ -9,9 +8,10 @@ import { UserRouter } from '@/adapters/http/users/user.router'
 import { FindUserController } from '@/adapters/http/users/find-user.controller'
 import { FindUserUseCase } from '@/useCases/find-user/find-user.use-case'
 import { FindUserUseCaseInterface } from '@/useCases/find-user/find-user.use-case-interface'
+import { ContainerWrapperInterface } from './container-wrapper.interface'
 
 export class UserContainer {
-    constructor(private container: Container) {}
+    constructor(private container: ContainerWrapperInterface) {}
 
     public register(): void {
         this.registerRepository()

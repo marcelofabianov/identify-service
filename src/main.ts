@@ -1,19 +1,25 @@
-import { Container } from './containers/container'
+import { ContainerWrapper } from './containers/container-wrapper'
 import { serverStart } from './server'
 import { UserContainer } from './containers/user.container'
 import { Connection } from './adapters/database/connection'
 import { PrismaClient } from '@prisma/client'
+import { FastifyInstance } from 'fastify'
 
-async function main(): Promise<void> {
-    const conn = new Connection(new PrismaClient())
+const conn = new Connection(new PrismaClient())
 
-    const container = new Container()
-    container.add('Connection', conn)
+const containerWrapper = new ContainerWrapper()
 
-    const userContainer = new UserContainer(container)
-    userContainer.register()
+containerWrapper.add('Connection', conn)
 
-    serverStart(container)
-}
+const userContainer = new UserContainer(containerWrapper)
+userContainer.register()
 
-main()
+const appPromise: Promise<FastifyInstance> = serverStart(containerWrapper)
+
+appPromise
+    .then((fastifyInstance: FastifyInstance) => {
+        module.exports = { app: fastifyInstance }
+    })
+    .catch((error) => {
+        throw new Error(error)
+    })
