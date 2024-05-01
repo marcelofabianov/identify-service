@@ -5,6 +5,6 @@ export interface UserInterface {
     getPassword(): string
     getCreatedAt(): Date
     getUpdatedAt(): Date
-    getDeletedAt(): Date | null
     getArchivedAt(): Date | null
+    getDeletedAt(): Date | null
 }

@@ -3,6 +3,8 @@ import { UserRepositoryInterface } from './user.repository-interface'
 import { ConnectionInterface } from '@/adapters/database/connection.interface'
 import { UserErrorEnum } from '@/errors/user.error-enum'
 import { ErrorHandle } from '@/errors/ErrorHandle'
+import { UserInterface } from '@/entities/user.interface'
+import { User } from '@/entities/user'
 
 export class UserRepository implements UserRepositoryInterface {
     constructor(private readonly db: ConnectionInterface) {}
@@ -28,8 +30,37 @@ export class UserRepository implements UserRepositoryInterface {
 
             return !!user
         } catch (error) {
-            console.log(error)
             throw new ErrorHandle(500, UserErrorEnum.EXISTS_USER_BY_EMAIL)
+        }
+    }
+
+    async findById(id: string): Promise<UserInterface | null> {
+        try {
+            const db = this.db.get()
+
+            const user = await db.user.findUnique({
+                where: {
+                    id,
+                },
+            })
+
+            if (!user) {
+                return new Promise((resolve) => resolve(null))
+            }
+
+            const dto = {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                password: user.password,
+                role: user.role,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt,
+            } as UserDTO
+
+            return Promise.resolve(User.create(dto))
+        } catch (error) {
+            throw new ErrorHandle(500, UserErrorEnum.FIND_USER_BY_ID)
         }
     }
 }

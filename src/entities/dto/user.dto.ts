@@ -8,8 +8,8 @@ export const UserSchema = z.object({
     role: z.enum(['ADMIN', 'USER']),
     createdAt: z.date(),
     updatedAt: z.date(),
-    deletedAt: z.date().nullable(),
     archivedAt: z.date().nullable(),
+    deletedAt: z.date().nullable(),
 })
 
 export type UserDTO = z.infer<typeof UserSchema>

@@ -22,7 +22,6 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
             id: randomUUID(),
             createdAt: new Date(),
             updatedAt: new Date(),
-            deletedAt: null,
             archivedAt: null,
         } as UserDTO
 

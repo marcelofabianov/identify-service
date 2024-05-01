@@ -2,18 +2,18 @@ import { UserDTO } from './dto/user.dto'
 import { UserInterface } from './user.interface'
 
 export class User implements UserInterface {
-    constructor(
+    private constructor(
         private readonly id: string,
         private readonly name: string,
         private readonly email: string,
         private readonly password: string,
         private readonly createdAt: Date,
         private readonly updatedAt: Date,
-        private readonly deletedAt: Date | null,
         private readonly archivedAt: Date | null,
+        private readonly deletedAt: Date | null,
     ) {}
 
-    static create(dto: UserDTO): User {
+    static create(dto: UserDTO, deletedAt: Date | null = null): User {
         return new User(
             dto.id,
             dto.name,
@@ -21,8 +21,8 @@ export class User implements UserInterface {
             dto.password,
             dto.createdAt,
             dto.updatedAt,
-            dto.deletedAt,
             dto.archivedAt,
+            deletedAt,
         )
     }
 
@@ -50,11 +50,11 @@ export class User implements UserInterface {
         return this.updatedAt
     }
 
-    getDeletedAt(): Date | null {
-        return this.deletedAt
-    }
-
     getArchivedAt(): Date | null {
         return this.archivedAt
+    }
+
+    getDeletedAt(): Date | null {
+        return this.deletedAt
     }
 }

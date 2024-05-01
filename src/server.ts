@@ -22,7 +22,7 @@ const serverStart = async (container: Container) => {
 
 function registerRouters(app: FastifyInstance, container: Container): Container {
     const userRouter = container.get('UserRouter') as UserRouter
-    app.register(userRouter.register, { prefix: '/api/users' })
+    app.register(userRouter.register)
 
     return container
 }

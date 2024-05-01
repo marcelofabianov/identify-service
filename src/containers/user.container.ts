@@ -6,6 +6,8 @@ import { CreateUserUseCaseInterface } from '@/useCases/create-user/create-user.u
 import { UserRepositoryInterface } from '@/repositories/user.repository-interface'
 import { CreateUserController } from '@/adapters/http/users/create-user.controller'
 import { UserRouter } from '@/adapters/http/users/user.router'
+import { FindUserController } from '@/adapters/http/users/find-user.controller'
+import { FindUserUseCase } from '@/useCases/find-user/find-user.use-case'
 
 export class UserContainer {
     constructor(private container: Container) {}
@@ -27,20 +29,27 @@ export class UserContainer {
     private registerUseCases(): void {
         const userRepository = this.container.get('UserRepository') as UserRepositoryInterface
         const createUserUseCase = new CreateUserUseCase(userRepository)
+        const findUserUseCase = new FindUserUseCase(userRepository)
 
         this.container.add('CreateUserUseCase', createUserUseCase)
+        this.container.add('FindUserUseCase', findUserUseCase)
     }
 
     private registerControllers(): void {
         const createUserUseCase = this.container.get('CreateUserUseCase') as CreateUserUseCaseInterface
+        const userRepository = this.container.get('UserRepository') as UserRepositoryInterface
         const createUserController = new CreateUserController(createUserUseCase)
+        const findUserController = new FindUserController(userRepository)
 
         this.container.add('CreateUserController', createUserController)
+        this.container.add('FindUserController', findUserController)
     }
 
     private registerRouter(): void {
         const createUserController = this.container.get('CreateUserController') as CreateUserController
-        const userRouter = new UserRouter(createUserController)
+        const findUserController = this.container.get('FindUserController') as FindUserController
+
+        const userRouter = new UserRouter(createUserController, findUserController)
 
         this.container.add('UserRouter', userRouter)
     }
