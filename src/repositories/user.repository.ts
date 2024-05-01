@@ -57,6 +57,7 @@ export class UserRepository implements UserRepositoryInterface {
                 role: user.role,
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt,
+                archivedAt: user.archivedAt,
             } as UserDTO
 
             return Promise.resolve(User.create(dto))
@@ -84,6 +85,7 @@ export class UserRepository implements UserRepositoryInterface {
                     role: user.role,
                     createdAt: user.createdAt,
                     updatedAt: user.updatedAt,
+                    archivedAt: user.archivedAt,
                 } as UserDTO
 
                 return User.create(dto)
