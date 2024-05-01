@@ -1,4 +1,4 @@
-import { DeleteUserUseCaseInterface } from '@/useCases/delete-user/delete-user.use-case-interface'
+import { DeleteUserUseCaseInterface } from '@/useCases/users/delete-user/delete-user.use-case-interface'
 import { ControllerInterface } from '@http/controller.interface'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { responseError } from '@http/response-error'

@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { FindAllUserUseCaseInterface } from '@/useCases/find-all-user/find-all-user.use-case-interface'
+import { FindAllUserUseCaseInterface } from '@/useCases/users/find-all-user/find-all-user.use-case-interface'
 import { ControllerInterface } from '@http/controller.interface'
 import { responseError } from '@http/response-error'
 
