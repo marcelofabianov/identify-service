@@ -23,8 +23,10 @@ import { ActivateUserUseCase } from '@/useCases/users/activate-user/activate-use
 import { ActivateUserController } from '@/adapters/http/users/controllers/activate-user.controller'
 import { ChangePasswordUseCase } from '@/useCases/users/change-password/change-password.use-case'
 import { ChangePasswordController } from '@/adapters/http/users/controllers/change-password.controller'
+import { ContainerInterface } from './container.interface'
+import { PasswordServiceInterface } from '@/services/password-service.interface'
 
-export class UserContainer {
+export class UserContainer implements ContainerInterface {
     constructor(private container: ContainerWrapperInterface) {}
 
     public register(): void {
@@ -42,15 +44,17 @@ export class UserContainer {
     }
 
     private registerUseCases(): void {
+        const passwordService = this.container.get('PasswordService') as PasswordServiceInterface
+
         const userRepository = this.container.get('UserRepository') as UserRepositoryInterface
-        const createUserUseCase = new CreateUserUseCase(userRepository)
+        const createUserUseCase = new CreateUserUseCase(passwordService, userRepository)
         const findUserUseCase = new FindUserUseCase(userRepository)
         const findAllUserUseCase = new FindAllUserUseCase(userRepository)
         const deleteUserUseCase = new DeleteUserUseCase(userRepository)
         const updateUserUseCase = new UpdateUserUseCase(userRepository)
         const archiveUserUseCase = new ArchiveUserUseCase(userRepository)
         const activateUserUseCase = new ActivateUserUseCase(userRepository)
-        const changePasswordUseCase = new ChangePasswordUseCase(userRepository)
+        const changePasswordUseCase = new ChangePasswordUseCase(passwordService, userRepository)
 
         this.container.add('CreateUserUseCase', createUserUseCase)
         this.container.add('FindUserUseCase', findUserUseCase)

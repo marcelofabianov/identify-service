@@ -10,4 +10,8 @@ export enum UserErrorEnum {
     ARCHIVE_USER = 'error_archive_user',
     ACTIVATE_USER = 'error_activate_user',
     CHANGE_PASSWORD = 'error_change_password',
+    HASH_PASSWORD = 'error_hash_password',
+    COMPARE_PASSWORD = 'error_compare_password',
+    USER_NOT_FOUND = 'error_user_not_found',
+    PASSWORD_NOT_MATCH = 'error_password_not_match',
 }

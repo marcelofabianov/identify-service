@@ -7,6 +7,7 @@ const envSchema = z.object({
     API_PORT: z.string().transform((val) => parseInt(val, 10)),
     API_LOG: z.string(),
     DATABASE_URL: z.string(),
+    API_HASH_SALT: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

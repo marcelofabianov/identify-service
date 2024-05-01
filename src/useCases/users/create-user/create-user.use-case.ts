@@ -6,9 +6,13 @@ import { randomUUID } from 'crypto'
 import { ErrorHandle } from '@/errors/error-handle'
 import { CreateUserResponseInterface } from './create-user.response-interface'
 import { UserDTO } from '@/entities/dto/user.dto'
+import { CreateUserPasswordServiceInterface } from './create-user-password.service-interface'
 
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
-    constructor(private readonly userRepository: CreateUserRepositoryInterface) {}
+    constructor(
+        private readonly passwordService: CreateUserPasswordServiceInterface,
+        private readonly userRepository: CreateUserRepositoryInterface,
+    ) {}
 
     async execute(request: CreateUserRequestInterface): Promise<CreateUserResponseInterface> {
         const exists = await this.userRepository.existsByEmail(request.email)
@@ -17,8 +21,11 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
             throw new ErrorHandle(400, UserErrorEnum.ALREADY_EXISTS)
         }
 
+        const password = await this.passwordService.hashPassword(request.password)
+
         const dto = {
             ...request,
+            password,
             id: randomUUID(),
             createdAt: new Date(),
             updatedAt: new Date(),
