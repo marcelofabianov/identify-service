@@ -9,6 +9,9 @@
         "paths": {
             "@/*": [
                 "src/*"
+            ],
+            "@http/*": [
+                "src/adapters/http/*"
             ]
         },
         "esModuleInterop": true,

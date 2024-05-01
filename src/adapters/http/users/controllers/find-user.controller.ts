@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { ControllerInterface } from '@/adapters/http/controller.interface'
+import { ControllerInterface } from '@http/controller.interface'
+import { responseError } from '@http/response-error'
 import { FindUserUseCaseInterface } from '@/useCases/find-user/find-user.use-case-interface'
-import { responseError } from '@/adapters/http/response-error'
 
 type Params = {
     id: string
