@@ -8,14 +8,14 @@ const serverStart = async (container: Container) => {
     registerRouters(app, container)
 
     app.get('/', async (_, reply) => {
-        reply.code(200).send({ message: 'Hello World' })
+        reply.code(200).send({ message: 'API' })
     })
 
     try {
         await app.listen({ port: 3333 })
         console.log('Server is running on http://localhost:3333')
-    } catch (err) {
-        app.log.error(err)
+    } catch (error) {
+        console.error('Error on start server', error)
         process.exit(1)
     }
 }

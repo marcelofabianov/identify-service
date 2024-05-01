@@ -2,6 +2,7 @@ import { UserDTO } from '@/entities/dto/user.dto'
 import { UserRepositoryInterface } from './user.repository-interface'
 import { ConnectionInterface } from '@/adapters/database/connection.interface'
 import { UserErrorEnum } from '@/errors/user.error-enum'
+import { ErrorHandle } from '@/errors/ErrorHandle'
 
 export class UserRepository implements UserRepositoryInterface {
     constructor(private readonly db: ConnectionInterface) {}
@@ -11,7 +12,7 @@ export class UserRepository implements UserRepositoryInterface {
             const db = this.db.get()
             await db.user.create({ data: dto })
         } catch (error) {
-            throw new Error(UserErrorEnum.CREATE_USER)
+            throw new ErrorHandle(500, UserErrorEnum.CREATE_USER)
         }
     }
 
@@ -28,7 +29,7 @@ export class UserRepository implements UserRepositoryInterface {
             return !!user
         } catch (error) {
             console.log(error)
-            throw new Error(UserErrorEnum.FIND_USER_BY_EMAIL)
+            throw new ErrorHandle(500, UserErrorEnum.EXISTS_USER_BY_EMAIL)
         }
     }
 }

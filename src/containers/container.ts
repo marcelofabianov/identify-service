@@ -1,3 +1,5 @@
+import { ErrorHandle } from '@/errors/ErrorHandle'
+
 export class Container {
     private readonly container: Record<string, unknown>
 
@@ -7,7 +9,7 @@ export class Container {
 
     add(key: string, value: unknown): void {
         if (this.has(key)) {
-            throw new Error(`Key ${key} already exists in container`)
+            throw new ErrorHandle(500, `Key ${key} already exists in container`)
         }
 
         this.container[key] = value
@@ -15,7 +17,7 @@ export class Container {
 
     get(key: string): unknown {
         if (!this.has(key)) {
-            throw new Error(`Key ${key} not found in container`)
+            throw new ErrorHandle(500, `Key ${key} does not exist in container`)
         }
 
         return this.container[key]

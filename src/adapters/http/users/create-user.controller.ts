@@ -1,7 +1,8 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { ControllerInterface } from '../controller.interface'
-import { CreateUserRequest } from '@/useCases/create-user/create-user.request'
+import { CreateUserRequest } from '@/adapters/http/users/create-user.request'
 import { CreateUserUseCaseInterface } from '@/useCases/create-user/create-user.use-case-interface'
+import { ErrorHandle } from '@/errors/ErrorHandle'
 
 export class CreateUserController implements ControllerInterface<void> {
     constructor(private readonly useCase: CreateUserUseCaseInterface) {}
@@ -9,10 +10,15 @@ export class CreateUserController implements ControllerInterface<void> {
     public async handle(request: FastifyRequest, reply: FastifyReply): Promise<void> {
         try {
             const body = request.body as CreateUserRequest
-            await this.useCase.execute(body)
-            reply.code(201).send()
+            const user = await this.useCase.execute(body)
+            reply.code(201).send(user)
         } catch (error) {
-            reply.code(500).send({ message: error.message })
+            if (error instanceof ErrorHandle) {
+                reply.code(error.statusCode).send({ message: error.message })
+            }
+            if (error instanceof Error) {
+                reply.code(500).send({ message: 'Internal server error' })
+            }
         }
     }
 }

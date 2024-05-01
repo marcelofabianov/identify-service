@@ -1,5 +1,6 @@
-import { CreateUserRequest } from './create-user.request'
+import { CreateUserRequestInterface } from './create-user.request-interface'
+import { CreateUserResponseInterface } from './create-user.response-interface'
 
 export interface CreateUserUseCaseInterface {
-    execute(request: CreateUserRequest): Promise<void>
+    execute(request: CreateUserRequestInterface): Promise<CreateUserResponseInterface>
 }
