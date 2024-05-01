@@ -11,6 +11,7 @@ export class UserRouter implements RouterInterface {
         private deleteUserController: ControllerInterface,
         private updateUserController: ControllerInterface,
         private archiveUserController: ControllerInterface,
+        private activateUserController: ControllerInterface,
     ) {}
 
     public register = (fastify: FastifyInstance, _: unknown, done: () => void): void => {
@@ -20,6 +21,7 @@ export class UserRouter implements RouterInterface {
         fastify.delete(UserUriEnum.DELETE_USER, (req, reply) => this.deleteUserController.handle(req, reply))
         fastify.put(UserUriEnum.UPDATE_USER, (req, reply) => this.updateUserController.handle(req, reply))
         fastify.patch(UserUriEnum.ARCHIVE_USER, (req, reply) => this.archiveUserController.handle(req, reply))
+        fastify.patch(UserUriEnum.ACTIVATE_USER, (req, reply) => this.activateUserController.handle(req, reply))
 
         done()
     }

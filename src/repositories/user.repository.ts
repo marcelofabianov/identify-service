@@ -143,4 +143,21 @@ export class UserRepository implements UserRepositoryInterface {
             throw new ErrorHandle(500, UserErrorEnum.ARCHIVE_USER)
         }
     }
+
+    async activate(id: string): Promise<void> {
+        try {
+            const db = this.db.get()
+            await db.user.update({
+                where: {
+                    id,
+                },
+                data: {
+                    archivedAt: null,
+                    updatedAt: new Date(),
+                },
+            })
+        } catch (error) {
+            throw new ErrorHandle(500, UserErrorEnum.ACTIVATE_USER)
+        }
+    }
 }

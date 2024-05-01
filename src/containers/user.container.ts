@@ -19,6 +19,8 @@ import { UpdateUserUseCase } from '@/useCases/users/update-user/update-user.use-
 import { UpdateUserController } from '@/adapters/http/users/controllers/update-user.controller'
 import { ArchiveUserUseCase } from '@/useCases/users/archive-user/archive-user.use-case'
 import { ArchiveUserController } from '@/adapters/http/users/controllers/archive-user.controller'
+import { ActivateUserUseCase } from '@/useCases/users/activate-user/activate-user.use-case'
+import { ActivateUserController } from '@/adapters/http/users/controllers/activate-user.controller'
 
 export class UserContainer {
     constructor(private container: ContainerWrapperInterface) {}
@@ -45,6 +47,7 @@ export class UserContainer {
         const deleteUserUseCase = new DeleteUserUseCase(userRepository)
         const updateUserUseCase = new UpdateUserUseCase(userRepository)
         const archiveUserUseCase = new ArchiveUserUseCase(userRepository)
+        const activateUserUseCase = new ActivateUserUseCase(userRepository)
 
         this.container.add('CreateUserUseCase', createUserUseCase)
         this.container.add('FindUserUseCase', findUserUseCase)
@@ -52,6 +55,7 @@ export class UserContainer {
         this.container.add('DeleteUserUseCase', deleteUserUseCase)
         this.container.add('UpdateUserUseCase', updateUserUseCase)
         this.container.add('ArchiveUserUseCase', archiveUserUseCase)
+        this.container.add('ActivateUserUseCase', activateUserUseCase)
     }
 
     private registerControllers(): void {
@@ -61,6 +65,7 @@ export class UserContainer {
         const deleteUserUseCase = this.container.get('DeleteUserUseCase') as DeleteUserUseCase
         const updateUserUseCase = this.container.get('UpdateUserUseCase') as UpdateUserUseCase
         const archiveUserUseCase = this.container.get('ArchiveUserUseCase') as ArchiveUserUseCase
+        const activateUserUseCase = this.container.get('ActivateUserUseCase') as ActivateUserUseCase
 
         const createUserController = new CreateUserController(createUserUseCase)
         const findUserController = new FindUserController(findUserUseCase)
@@ -68,6 +73,7 @@ export class UserContainer {
         const deleteUserController = new DeleteUserController(deleteUserUseCase)
         const updateUserController = new UpdateUserController(updateUserUseCase)
         const archiveUserController = new ArchiveUserController(archiveUserUseCase)
+        const activateUserController = new ActivateUserController(activateUserUseCase)
 
         this.container.add('CreateUserController', createUserController)
         this.container.add('FindUserController', findUserController)
@@ -75,6 +81,7 @@ export class UserContainer {
         this.container.add('DeleteUserController', deleteUserController)
         this.container.add('UpdateUserController', updateUserController)
         this.container.add('ArchiveUserController', archiveUserController)
+        this.container.add('ActivateUserController', activateUserController)
     }
 
     private registerRouter(): void {
@@ -84,6 +91,7 @@ export class UserContainer {
         const deleteUserController = this.container.get('DeleteUserController') as ControllerInterface
         const updateUserController = this.container.get('UpdateUserController') as ControllerInterface
         const archiveUserController = this.container.get('ArchiveUserController') as ControllerInterface
+        const activateUserController = this.container.get('ActivateUserController') as ControllerInterface
 
         const userRouter = new UserRouter(
             createUserController,
@@ -92,6 +100,7 @@ export class UserContainer {
             deleteUserController,
             updateUserController,
             archiveUserController,
+            activateUserController,
         )
 
         this.container.add('UserRouter', userRouter)
