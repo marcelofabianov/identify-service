@@ -41,6 +41,7 @@ export class UserRepository implements UserRepositoryInterface {
             const user = await db.user.findUnique({
                 where: {
                     id,
+                    deletedAt: null,
                 },
             })
 
@@ -68,7 +69,11 @@ export class UserRepository implements UserRepositoryInterface {
         try {
             const db = this.db.get()
 
-            const users = await db.user.findMany()
+            const users = await db.user.findMany({
+                where: {
+                    deletedAt: null,
+                },
+            })
 
             return users.map((user) => {
                 const dto = {
@@ -85,6 +90,23 @@ export class UserRepository implements UserRepositoryInterface {
             })
         } catch (error) {
             throw new ErrorHandle(500, UserErrorEnum.FIND_ALL_USERS)
+        }
+    }
+
+    async delete(id: string): Promise<void> {
+        try {
+            const db = this.db.get()
+            await db.user.update({
+                where: {
+                    id,
+                },
+                data: {
+                    deletedAt: new Date(),
+                    updatedAt: new Date(),
+                },
+            })
+        } catch (error) {
+            throw new ErrorHandle(500, UserErrorEnum.DELETE_USER)
         }
     }
 }
