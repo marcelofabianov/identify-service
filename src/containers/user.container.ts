@@ -8,6 +8,7 @@ import { CreateUserController } from '@/adapters/http/users/create-user.controll
 import { UserRouter } from '@/adapters/http/users/user.router'
 import { FindUserController } from '@/adapters/http/users/find-user.controller'
 import { FindUserUseCase } from '@/useCases/find-user/find-user.use-case'
+import { FindUserUseCaseInterface } from '@/useCases/find-user/find-user.use-case-interface'
 
 export class UserContainer {
     constructor(private container: Container) {}
@@ -37,9 +38,9 @@ export class UserContainer {
 
     private registerControllers(): void {
         const createUserUseCase = this.container.get('CreateUserUseCase') as CreateUserUseCaseInterface
-        const userRepository = this.container.get('UserRepository') as UserRepositoryInterface
+        const findUserUseCase = this.container.get('FindUserUseCase') as FindUserUseCaseInterface
         const createUserController = new CreateUserController(createUserUseCase)
-        const findUserController = new FindUserController(userRepository)
+        const findUserController = new FindUserController(findUserUseCase)
 
         this.container.add('CreateUserController', createUserController)
         this.container.add('FindUserController', findUserController)
