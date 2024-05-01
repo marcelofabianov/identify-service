@@ -29,10 +29,13 @@
         "test:all-watch": "NODE_ENV=test && vitest --watch --dir ./tests"
     },
     "dependencies": {
+        "@prisma/adapter-pg": "5.13.0",
         "fastify": "4.26.2",
+        "pg": "8.11.5",
         "zod": "3.23.5"
     },
     "devDependencies": {
+        "@prisma/client": "5.13.0",
         "@types/node": "20.12.7",
         "@types/supertest": "6.0.2",
         "@typescript-eslint/eslint-plugin": "7.7.1",
@@ -42,6 +45,7 @@
         "eslint": "8.56.0",
         "prettier": "3.2.5",
         "prettier-eslint": "16.3.0",
+        "prisma": "5.13.0",
         "supertest": "7.0.0",
         "ts-node": "10.9.2",
         "tsup": "8.0.2",
