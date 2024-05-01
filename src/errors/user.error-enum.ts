@@ -9,4 +9,5 @@ export enum UserErrorEnum {
     UPDATE_USER = 'error_update_user',
     ARCHIVE_USER = 'error_archive_user',
     ACTIVATE_USER = 'error_activate_user',
+    CHANGE_PASSWORD = 'error_change_password',
 }

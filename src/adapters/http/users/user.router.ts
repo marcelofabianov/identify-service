@@ -12,6 +12,7 @@ export class UserRouter implements RouterInterface {
         private updateUserController: ControllerInterface,
         private archiveUserController: ControllerInterface,
         private activateUserController: ControllerInterface,
+        private changePasswordController: ControllerInterface,
     ) {}
 
     public register = (fastify: FastifyInstance, _: unknown, done: () => void): void => {
@@ -22,6 +23,7 @@ export class UserRouter implements RouterInterface {
         fastify.put(UserUriEnum.UPDATE_USER, (req, reply) => this.updateUserController.handle(req, reply))
         fastify.patch(UserUriEnum.ARCHIVE_USER, (req, reply) => this.archiveUserController.handle(req, reply))
         fastify.patch(UserUriEnum.ACTIVATE_USER, (req, reply) => this.activateUserController.handle(req, reply))
+        fastify.patch(UserUriEnum.CHANGE_PASSWORD, (req, reply) => this.changePasswordController.handle(req, reply))
 
         done()
     }

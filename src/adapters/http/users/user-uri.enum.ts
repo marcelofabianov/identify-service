@@ -6,4 +6,5 @@ export class UserUriEnum {
     static UPDATE_USER = '/api/v1/users/:id'
     static ARCHIVE_USER = '/api/v1/users/:id/archive'
     static ACTIVATE_USER = '/api/v1/users/:id/activate'
+    static CHANGE_PASSWORD = '/api/v1/users/:id/change-password'
 }

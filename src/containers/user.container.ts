@@ -21,6 +21,8 @@ import { ArchiveUserUseCase } from '@/useCases/users/archive-user/archive-user.u
 import { ArchiveUserController } from '@/adapters/http/users/controllers/archive-user.controller'
 import { ActivateUserUseCase } from '@/useCases/users/activate-user/activate-user.use-case'
 import { ActivateUserController } from '@/adapters/http/users/controllers/activate-user.controller'
+import { ChangePasswordUseCase } from '@/useCases/users/change-password/change-password.use-case'
+import { ChangePasswordController } from '@/adapters/http/users/controllers/change-password.controller'
 
 export class UserContainer {
     constructor(private container: ContainerWrapperInterface) {}
@@ -48,6 +50,7 @@ export class UserContainer {
         const updateUserUseCase = new UpdateUserUseCase(userRepository)
         const archiveUserUseCase = new ArchiveUserUseCase(userRepository)
         const activateUserUseCase = new ActivateUserUseCase(userRepository)
+        const changePasswordUseCase = new ChangePasswordUseCase(userRepository)
 
         this.container.add('CreateUserUseCase', createUserUseCase)
         this.container.add('FindUserUseCase', findUserUseCase)
@@ -56,6 +59,7 @@ export class UserContainer {
         this.container.add('UpdateUserUseCase', updateUserUseCase)
         this.container.add('ArchiveUserUseCase', archiveUserUseCase)
         this.container.add('ActivateUserUseCase', activateUserUseCase)
+        this.container.add('ChangePasswordUseCase', changePasswordUseCase)
     }
 
     private registerControllers(): void {
@@ -66,6 +70,7 @@ export class UserContainer {
         const updateUserUseCase = this.container.get('UpdateUserUseCase') as UpdateUserUseCase
         const archiveUserUseCase = this.container.get('ArchiveUserUseCase') as ArchiveUserUseCase
         const activateUserUseCase = this.container.get('ActivateUserUseCase') as ActivateUserUseCase
+        const changePasswordUseCase = this.container.get('ChangePasswordUseCase') as ChangePasswordUseCase
 
         const createUserController = new CreateUserController(createUserUseCase)
         const findUserController = new FindUserController(findUserUseCase)
@@ -74,6 +79,7 @@ export class UserContainer {
         const updateUserController = new UpdateUserController(updateUserUseCase)
         const archiveUserController = new ArchiveUserController(archiveUserUseCase)
         const activateUserController = new ActivateUserController(activateUserUseCase)
+        const changePasswordController = new ChangePasswordController(changePasswordUseCase)
 
         this.container.add('CreateUserController', createUserController)
         this.container.add('FindUserController', findUserController)
@@ -82,6 +88,7 @@ export class UserContainer {
         this.container.add('UpdateUserController', updateUserController)
         this.container.add('ArchiveUserController', archiveUserController)
         this.container.add('ActivateUserController', activateUserController)
+        this.container.add('ChangePasswordController', changePasswordController)
     }
 
     private registerRouter(): void {
@@ -92,6 +99,7 @@ export class UserContainer {
         const updateUserController = this.container.get('UpdateUserController') as ControllerInterface
         const archiveUserController = this.container.get('ArchiveUserController') as ControllerInterface
         const activateUserController = this.container.get('ActivateUserController') as ControllerInterface
+        const changePasswordController = this.container.get('ChangePasswordController') as ControllerInterface
 
         const userRouter = new UserRouter(
             createUserController,
@@ -101,6 +109,7 @@ export class UserContainer {
             updateUserController,
             archiveUserController,
             activateUserController,
+            changePasswordController,
         )
 
         this.container.add('UserRouter', userRouter)
