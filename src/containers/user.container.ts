@@ -9,6 +9,10 @@ import { FindUserController } from '@/adapters/http/users/controllers/find-user.
 import { FindUserUseCase } from '@/useCases/find-user/find-user.use-case'
 import { FindUserUseCaseInterface } from '@/useCases/find-user/find-user.use-case-interface'
 import { ContainerWrapperInterface } from './container-wrapper.interface'
+import { FindAllUserUseCase } from '@/useCases/find-all-user/find-all-user.use-case'
+import { FindAllUserController } from '@/adapters/http/users/controllers/find-all-user.controller'
+import { FindAllUserUseCaseInterface } from '@/useCases/find-all-user/find-all-user.use-case-interface'
+import { ControllerInterface } from '@/adapters/http/controller.interface'
 
 export class UserContainer {
     constructor(private container: ContainerWrapperInterface) {}
@@ -31,26 +35,33 @@ export class UserContainer {
         const userRepository = this.container.get('UserRepository') as UserRepositoryInterface
         const createUserUseCase = new CreateUserUseCase(userRepository)
         const findUserUseCase = new FindUserUseCase(userRepository)
+        const findAllUserUseCase = new FindAllUserUseCase(userRepository)
 
         this.container.add('CreateUserUseCase', createUserUseCase)
         this.container.add('FindUserUseCase', findUserUseCase)
+        this.container.add('FindAllUserUseCase', findAllUserUseCase)
     }
 
     private registerControllers(): void {
         const createUserUseCase = this.container.get('CreateUserUseCase') as CreateUserUseCaseInterface
         const findUserUseCase = this.container.get('FindUserUseCase') as FindUserUseCaseInterface
+        const findAllUserUseCase = this.container.get('FindAllUserUseCase') as FindAllUserUseCaseInterface
+
         const createUserController = new CreateUserController(createUserUseCase)
         const findUserController = new FindUserController(findUserUseCase)
+        const findAllUserController = new FindAllUserController(findAllUserUseCase)
 
         this.container.add('CreateUserController', createUserController)
         this.container.add('FindUserController', findUserController)
+        this.container.add('FindAllUserController', findAllUserController)
     }
 
     private registerRouter(): void {
-        const createUserController = this.container.get('CreateUserController') as CreateUserController
-        const findUserController = this.container.get('FindUserController') as FindUserController
+        const createUserController = this.container.get('CreateUserController') as ControllerInterface
+        const findUserController = this.container.get('FindUserController') as ControllerInterface
+        const findAllUserController = this.container.get('FindAllUserController') as ControllerInterface
 
-        const userRouter = new UserRouter(createUserController, findUserController)
+        const userRouter = new UserRouter(createUserController, findUserController, findAllUserController)
 
         this.container.add('UserRouter', userRouter)
     }

@@ -7,6 +7,7 @@ export class User implements UserInterface {
         private readonly name: string,
         private readonly email: string,
         private readonly password: string,
+        private readonly role: string,
         private readonly createdAt: Date,
         private readonly updatedAt: Date,
         private readonly archivedAt: Date | null,
@@ -19,6 +20,7 @@ export class User implements UserInterface {
             dto.name,
             dto.email,
             dto.password,
+            dto.role,
             dto.createdAt,
             dto.updatedAt,
             dto.archivedAt,
@@ -40,6 +42,10 @@ export class User implements UserInterface {
 
     getPassword(): string {
         return this.password
+    }
+
+    getRole(): string {
+        return this.role
     }
 
     getCreatedAt(): Date {

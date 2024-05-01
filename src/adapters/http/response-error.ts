@@ -18,4 +18,6 @@ export function responseError(error: unknown, reply: FastifyReply) {
         error: 'Internal server error',
         statusCode: 500,
     })
+
+    console.error(error)
 }

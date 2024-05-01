@@ -3,6 +3,7 @@ export interface UserInterface {
     getName(): string
     getEmail(): string
     getPassword(): string
+    getRole(): string
     getCreatedAt(): Date
     getUpdatedAt(): Date
     getArchivedAt(): Date | null
