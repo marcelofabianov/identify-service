@@ -1,6 +1,6 @@
 import { FastifyInstance } from 'fastify'
-import { CreateUserController } from './create-user.controller'
-import { FindUserController } from './find-user.controller'
+import { CreateUserController } from './controllers/create-user.controller'
+import { FindUserController } from './controllers/find-user.controller'
 import { UserUriEnum } from './user-uri.enum'
 import { RouterInterface } from '../router.interface'
 

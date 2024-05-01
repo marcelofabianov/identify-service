@@ -1,8 +1,8 @@
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { ControllerInterface } from '../controller.interface'
-import { createUserRequestSchema } from '@/adapters/http/users/create-user.request'
+import { ControllerInterface } from '@/adapters/http/controller.interface'
+import { createUserRequestSchema } from '@/adapters/http/users/requests/create-user.request'
 import { CreateUserUseCaseInterface } from '@/useCases/create-user/create-user.use-case-interface'
-import { responseError } from '../response-error'
+import { responseError } from '@/adapters/http/response-error'
 
 export class CreateUserController implements ControllerInterface {
     constructor(private readonly useCase: CreateUserUseCaseInterface) {}
