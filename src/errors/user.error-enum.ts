@@ -7,4 +7,5 @@ export enum UserErrorEnum {
     FIND_ALL_USERS = 'error_find_all_users',
     DELETE_USER = 'error_delete_user',
     UPDATE_USER = 'error_update_user',
+    ARCHIVE_USER = 'error_archive_user',
 }

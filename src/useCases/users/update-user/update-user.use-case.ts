@@ -7,7 +7,7 @@ import { UserDTO } from '@/entities/dto/user.dto'
 export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
     constructor(private readonly repository: UpdateUserRepositoryInterface) {}
 
-    async handle(request: UpdateUserRequestInterface): Promise<UpdateUserResponseInterface> {
+    async execute(request: UpdateUserRequestInterface): Promise<UpdateUserResponseInterface> {
         const user = await this.repository.findById(request.id)
 
         if (!user) {

@@ -126,4 +126,21 @@ export class UserRepository implements UserRepositoryInterface {
             throw new ErrorHandle(500, UserErrorEnum.UPDATE_USER)
         }
     }
+
+    async archive(id: string): Promise<void> {
+        try {
+            const db = this.db.get()
+            await db.user.update({
+                where: {
+                    id,
+                },
+                data: {
+                    archivedAt: new Date(),
+                    updatedAt: new Date(),
+                },
+            })
+        } catch (error) {
+            throw new ErrorHandle(500, UserErrorEnum.ARCHIVE_USER)
+        }
+    }
 }

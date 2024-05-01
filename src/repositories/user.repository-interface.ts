@@ -1,3 +1,4 @@
+import { ArchiveUserRepositoryInterface } from '@/useCases/users/archive-user/archive-user.repository-interface'
 import { CreateUserRepositoryInterface } from '@/useCases/users/create-user/create-user.repository-interface'
 import { DeleteUserRepositoryInterface } from '@/useCases/users/delete-user/delete-user.repository-interface'
 import { FindAllUserRepositoryInterface } from '@/useCases/users/find-all-user/find-all-user.repository-interface'
@@ -9,4 +10,5 @@ export interface UserRepositoryInterface
         FindUserRepositoryInterface,
         FindAllUserRepositoryInterface,
         DeleteUserRepositoryInterface,
-        UpdateUserRepositoryInterface {}
+        UpdateUserRepositoryInterface,
+        ArchiveUserRepositoryInterface {}
