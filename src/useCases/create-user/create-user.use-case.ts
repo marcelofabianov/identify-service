@@ -31,6 +31,7 @@ export class CreateUserUseCase implements CreateUserUseCaseInterface {
             id: dto.id,
             name: dto.name,
             email: dto.email,
+            role: dto.role,
             createdAt: dto.createdAt,
             updatedAt: dto.updatedAt,
         } as CreateUserResponseInterface
