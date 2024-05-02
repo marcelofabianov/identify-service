@@ -8,11 +8,11 @@ import { FindUserRepositoryInterface } from '@/useCases/users/find-user/find-use
 import { UpdateUserRepositoryInterface } from '@/useCases/users/update-user/update-user.repository-interface'
 
 export interface UserRepositoryInterface
-    extends CreateUserRepositoryInterface,
-        FindUserRepositoryInterface,
-        FindAllUserRepositoryInterface,
-        DeleteUserRepositoryInterface,
-        UpdateUserRepositoryInterface,
-        ArchiveUserRepositoryInterface,
-        ActivateUserRepositoryInterface,
-        ChangePasswordRepositoryInterface {}
+  extends CreateUserRepositoryInterface,
+    FindUserRepositoryInterface,
+    FindAllUserRepositoryInterface,
+    DeleteUserRepositoryInterface,
+    UpdateUserRepositoryInterface,
+    ArchiveUserRepositoryInterface,
+    ActivateUserRepositoryInterface,
+    ChangePasswordRepositoryInterface {}

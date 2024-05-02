@@ -1,3 +1,3 @@
 export interface ActivateUserUseCaseInterface {
-    execute(id: string): Promise<void>
+  execute(id: string): Promise<void>
 }

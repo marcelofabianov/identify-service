@@ -2,9 +2,9 @@ import { ArchiveUserRepositoryInterface } from './archive-user.repository-interf
 import { ArchiveUserUseCaseInterface } from './archive-user.use-case-interface'
 
 export class ArchiveUserUseCase implements ArchiveUserUseCaseInterface {
-    constructor(private readonly repository: ArchiveUserRepositoryInterface) {}
+  constructor(private readonly repository: ArchiveUserRepositoryInterface) {}
 
-    async execute(id: string): Promise<void> {
-        await this.repository.archive(id)
-    }
+  async execute(id: string): Promise<void> {
+    await this.repository.archive(id)
+  }
 }

@@ -21,9 +21,9 @@ userContainer.register()
 const appPromise: Promise<FastifyInstance> = serverStart(containerWrapper)
 
 appPromise
-    .then((fastifyInstance: FastifyInstance) => {
-        module.exports = { app: fastifyInstance }
-    })
-    .catch((error) => {
-        throw new Error(error)
-    })
+  .then((fastifyInstance: FastifyInstance) => {
+    module.exports = { app: fastifyInstance }
+  })
+  .catch((error) => {
+    throw new Error(error)
+  })

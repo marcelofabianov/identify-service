@@ -1,5 +1,5 @@
 export interface ChangePasswordRequestInterface {
-    id: string
-    password: string
-    newPassword: string
+  id: string
+  password: string
+  newPassword: string
 }

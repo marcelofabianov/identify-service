@@ -1,3 +1,3 @@
 export interface ArchiveUserRepositoryInterface {
-    archive: (id: string) => Promise<void>
+  archive: (id: string) => Promise<void>
 }

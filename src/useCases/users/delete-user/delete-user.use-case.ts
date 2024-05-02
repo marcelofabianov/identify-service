@@ -2,9 +2,9 @@ import { DeleteUserRepositoryInterface } from './delete-user.repository-interfac
 import { DeleteUserUseCaseInterface } from './delete-user.use-case-interface'
 
 export class DeleteUserUseCase implements DeleteUserUseCaseInterface {
-    constructor(private readonly repository: DeleteUserRepositoryInterface) {}
+  constructor(private readonly repository: DeleteUserRepositoryInterface) {}
 
-    async execute(id: string): Promise<void> {
-        await this.repository.delete(id)
-    }
+  async execute(id: string): Promise<void> {
+    await this.repository.delete(id)
+  }
 }

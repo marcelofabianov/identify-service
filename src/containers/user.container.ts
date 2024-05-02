@@ -27,95 +27,141 @@ import { ContainerInterface } from './container.interface'
 import { PasswordServiceInterface } from '@/services/password-service.interface'
 
 export class UserContainer implements ContainerInterface {
-    constructor(private container: ContainerWrapperInterface) {}
+  constructor(private container: ContainerWrapperInterface) {}
 
-    public register(): void {
-        this.registerRepository()
-        this.registerUseCases()
-        this.registerControllers()
-        this.registerRouter()
-    }
+  public register(): void {
+    this.registerRepository()
+    this.registerUseCases()
+    this.registerControllers()
+    this.registerRouter()
+  }
 
-    private registerRepository(): void {
-        const db = this.container.get('Connection') as ConnectionInterface
-        const userRepository = new UserRepository(db)
+  private registerRepository(): void {
+    const db = this.container.get('Connection') as ConnectionInterface
+    const userRepository = new UserRepository(db)
 
-        this.container.add('UserRepository', userRepository)
-    }
+    this.container.add('UserRepository', userRepository)
+  }
 
-    private registerUseCases(): void {
-        const passwordService = this.container.get('PasswordService') as PasswordServiceInterface
+  private registerUseCases(): void {
+    const passwordService = this.container.get(
+      'PasswordService',
+    ) as PasswordServiceInterface
 
-        const userRepository = this.container.get('UserRepository') as UserRepositoryInterface
-        const createUserUseCase = new CreateUserUseCase(passwordService, userRepository)
-        const findUserUseCase = new FindUserUseCase(userRepository)
-        const findAllUserUseCase = new FindAllUserUseCase(userRepository)
-        const deleteUserUseCase = new DeleteUserUseCase(userRepository)
-        const updateUserUseCase = new UpdateUserUseCase(userRepository)
-        const archiveUserUseCase = new ArchiveUserUseCase(userRepository)
-        const activateUserUseCase = new ActivateUserUseCase(userRepository)
-        const changePasswordUseCase = new ChangePasswordUseCase(passwordService, userRepository)
+    const userRepository = this.container.get(
+      'UserRepository',
+    ) as UserRepositoryInterface
+    const createUserUseCase = new CreateUserUseCase(
+      passwordService,
+      userRepository,
+    )
+    const findUserUseCase = new FindUserUseCase(userRepository)
+    const findAllUserUseCase = new FindAllUserUseCase(userRepository)
+    const deleteUserUseCase = new DeleteUserUseCase(userRepository)
+    const updateUserUseCase = new UpdateUserUseCase(userRepository)
+    const archiveUserUseCase = new ArchiveUserUseCase(userRepository)
+    const activateUserUseCase = new ActivateUserUseCase(userRepository)
+    const changePasswordUseCase = new ChangePasswordUseCase(
+      passwordService,
+      userRepository,
+    )
 
-        this.container.add('CreateUserUseCase', createUserUseCase)
-        this.container.add('FindUserUseCase', findUserUseCase)
-        this.container.add('FindAllUserUseCase', findAllUserUseCase)
-        this.container.add('DeleteUserUseCase', deleteUserUseCase)
-        this.container.add('UpdateUserUseCase', updateUserUseCase)
-        this.container.add('ArchiveUserUseCase', archiveUserUseCase)
-        this.container.add('ActivateUserUseCase', activateUserUseCase)
-        this.container.add('ChangePasswordUseCase', changePasswordUseCase)
-    }
+    this.container.add('CreateUserUseCase', createUserUseCase)
+    this.container.add('FindUserUseCase', findUserUseCase)
+    this.container.add('FindAllUserUseCase', findAllUserUseCase)
+    this.container.add('DeleteUserUseCase', deleteUserUseCase)
+    this.container.add('UpdateUserUseCase', updateUserUseCase)
+    this.container.add('ArchiveUserUseCase', archiveUserUseCase)
+    this.container.add('ActivateUserUseCase', activateUserUseCase)
+    this.container.add('ChangePasswordUseCase', changePasswordUseCase)
+  }
 
-    private registerControllers(): void {
-        const createUserUseCase = this.container.get('CreateUserUseCase') as CreateUserUseCaseInterface
-        const findUserUseCase = this.container.get('FindUserUseCase') as FindUserUseCaseInterface
-        const findAllUserUseCase = this.container.get('FindAllUserUseCase') as FindAllUserUseCaseInterface
-        const deleteUserUseCase = this.container.get('DeleteUserUseCase') as DeleteUserUseCase
-        const updateUserUseCase = this.container.get('UpdateUserUseCase') as UpdateUserUseCase
-        const archiveUserUseCase = this.container.get('ArchiveUserUseCase') as ArchiveUserUseCase
-        const activateUserUseCase = this.container.get('ActivateUserUseCase') as ActivateUserUseCase
-        const changePasswordUseCase = this.container.get('ChangePasswordUseCase') as ChangePasswordUseCase
+  private registerControllers(): void {
+    const createUserUseCase = this.container.get(
+      'CreateUserUseCase',
+    ) as CreateUserUseCaseInterface
+    const findUserUseCase = this.container.get(
+      'FindUserUseCase',
+    ) as FindUserUseCaseInterface
+    const findAllUserUseCase = this.container.get(
+      'FindAllUserUseCase',
+    ) as FindAllUserUseCaseInterface
+    const deleteUserUseCase = this.container.get(
+      'DeleteUserUseCase',
+    ) as DeleteUserUseCase
+    const updateUserUseCase = this.container.get(
+      'UpdateUserUseCase',
+    ) as UpdateUserUseCase
+    const archiveUserUseCase = this.container.get(
+      'ArchiveUserUseCase',
+    ) as ArchiveUserUseCase
+    const activateUserUseCase = this.container.get(
+      'ActivateUserUseCase',
+    ) as ActivateUserUseCase
+    const changePasswordUseCase = this.container.get(
+      'ChangePasswordUseCase',
+    ) as ChangePasswordUseCase
 
-        const createUserController = new CreateUserController(createUserUseCase)
-        const findUserController = new FindUserController(findUserUseCase)
-        const findAllUserController = new FindAllUserController(findAllUserUseCase)
-        const deleteUserController = new DeleteUserController(deleteUserUseCase)
-        const updateUserController = new UpdateUserController(updateUserUseCase)
-        const archiveUserController = new ArchiveUserController(archiveUserUseCase)
-        const activateUserController = new ActivateUserController(activateUserUseCase)
-        const changePasswordController = new ChangePasswordController(changePasswordUseCase)
+    const createUserController = new CreateUserController(createUserUseCase)
+    const findUserController = new FindUserController(findUserUseCase)
+    const findAllUserController = new FindAllUserController(findAllUserUseCase)
+    const deleteUserController = new DeleteUserController(deleteUserUseCase)
+    const updateUserController = new UpdateUserController(updateUserUseCase)
+    const archiveUserController = new ArchiveUserController(archiveUserUseCase)
+    const activateUserController = new ActivateUserController(
+      activateUserUseCase,
+    )
+    const changePasswordController = new ChangePasswordController(
+      changePasswordUseCase,
+    )
 
-        this.container.add('CreateUserController', createUserController)
-        this.container.add('FindUserController', findUserController)
-        this.container.add('FindAllUserController', findAllUserController)
-        this.container.add('DeleteUserController', deleteUserController)
-        this.container.add('UpdateUserController', updateUserController)
-        this.container.add('ArchiveUserController', archiveUserController)
-        this.container.add('ActivateUserController', activateUserController)
-        this.container.add('ChangePasswordController', changePasswordController)
-    }
+    this.container.add('CreateUserController', createUserController)
+    this.container.add('FindUserController', findUserController)
+    this.container.add('FindAllUserController', findAllUserController)
+    this.container.add('DeleteUserController', deleteUserController)
+    this.container.add('UpdateUserController', updateUserController)
+    this.container.add('ArchiveUserController', archiveUserController)
+    this.container.add('ActivateUserController', activateUserController)
+    this.container.add('ChangePasswordController', changePasswordController)
+  }
 
-    private registerRouter(): void {
-        const createUserController = this.container.get('CreateUserController') as ControllerInterface
-        const findUserController = this.container.get('FindUserController') as ControllerInterface
-        const findAllUserController = this.container.get('FindAllUserController') as ControllerInterface
-        const deleteUserController = this.container.get('DeleteUserController') as ControllerInterface
-        const updateUserController = this.container.get('UpdateUserController') as ControllerInterface
-        const archiveUserController = this.container.get('ArchiveUserController') as ControllerInterface
-        const activateUserController = this.container.get('ActivateUserController') as ControllerInterface
-        const changePasswordController = this.container.get('ChangePasswordController') as ControllerInterface
+  private registerRouter(): void {
+    const createUserController = this.container.get(
+      'CreateUserController',
+    ) as ControllerInterface
+    const findUserController = this.container.get(
+      'FindUserController',
+    ) as ControllerInterface
+    const findAllUserController = this.container.get(
+      'FindAllUserController',
+    ) as ControllerInterface
+    const deleteUserController = this.container.get(
+      'DeleteUserController',
+    ) as ControllerInterface
+    const updateUserController = this.container.get(
+      'UpdateUserController',
+    ) as ControllerInterface
+    const archiveUserController = this.container.get(
+      'ArchiveUserController',
+    ) as ControllerInterface
+    const activateUserController = this.container.get(
+      'ActivateUserController',
+    ) as ControllerInterface
+    const changePasswordController = this.container.get(
+      'ChangePasswordController',
+    ) as ControllerInterface
 
-        const userRouter = new UserRouter(
-            createUserController,
-            findUserController,
-            findAllUserController,
-            deleteUserController,
-            updateUserController,
-            archiveUserController,
-            activateUserController,
-            changePasswordController,
-        )
+    const userRouter = new UserRouter(
+      createUserController,
+      findUserController,
+      findAllUserController,
+      deleteUserController,
+      updateUserController,
+      archiveUserController,
+      activateUserController,
+      changePasswordController,
+    )
 
-        this.container.add('UserRouter', userRouter)
-    }
+    this.container.add('UserRouter', userRouter)
+  }
 }

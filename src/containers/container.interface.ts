@@ -1,3 +1,3 @@
 export interface ContainerInterface {
-    register(): void
+  register(): void
 }

@@ -9,38 +9,40 @@ import { UserDTO } from '@/entities/dto/user.dto'
 import { CreateUserPasswordServiceInterface } from './create-user-password.service-interface'
 
 export class CreateUserUseCase implements CreateUserUseCaseInterface {
-    constructor(
-        private readonly passwordService: CreateUserPasswordServiceInterface,
-        private readonly userRepository: CreateUserRepositoryInterface,
-    ) {}
+  constructor(
+    private readonly passwordService: CreateUserPasswordServiceInterface,
+    private readonly userRepository: CreateUserRepositoryInterface,
+  ) {}
 
-    async execute(request: CreateUserRequestInterface): Promise<CreateUserResponseInterface> {
-        const exists = await this.userRepository.existsByEmail(request.email)
+  async execute(
+    request: CreateUserRequestInterface,
+  ): Promise<CreateUserResponseInterface> {
+    const exists = await this.userRepository.existsByEmail(request.email)
 
-        if (exists) {
-            throw new ErrorHandle(400, UserErrorEnum.ALREADY_EXISTS)
-        }
-
-        const password = await this.passwordService.hashPassword(request.password)
-
-        const dto = {
-            ...request,
-            password,
-            id: randomUUID(),
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            archivedAt: null,
-        } as UserDTO
-
-        await this.userRepository.create(dto)
-
-        return {
-            id: dto.id,
-            name: dto.name,
-            email: dto.email,
-            role: dto.role,
-            createdAt: dto.createdAt,
-            updatedAt: dto.updatedAt,
-        } as CreateUserResponseInterface
+    if (exists) {
+      throw new ErrorHandle(400, UserErrorEnum.ALREADY_EXISTS)
     }
+
+    const password = await this.passwordService.hashPassword(request.password)
+
+    const dto = {
+      ...request,
+      password,
+      id: randomUUID(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      archivedAt: null,
+    } as UserDTO
+
+    await this.userRepository.create(dto)
+
+    return {
+      id: dto.id,
+      name: dto.name,
+      email: dto.email,
+      role: dto.role,
+      createdAt: dto.createdAt,
+      updatedAt: dto.updatedAt,
+    } as CreateUserResponseInterface
+  }
 }
