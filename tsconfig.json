@@ -1,23 +1,24 @@
 {
-    "compilerOptions": {
-        "target": "ES2022",
-        "lib": [
-            "ES2023"
-        ],
-        "module": "CommonJS",
-        "baseUrl": "./",
-        "paths": {
-            "@/*": [
-                "src/*"
-            ],
-            "@http/*": [
-                "src/adapters/http/*"
-            ]
-        },
-        "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "skipLibCheck": true,
-        "outDir": "./dist"
-    }
+  "extends": "@tsconfig/node20/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "ES2023"
+    ],
+    "module": "Node16",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@http/*": [
+        "src/adapters/http/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "./dist"
+  }
 }
