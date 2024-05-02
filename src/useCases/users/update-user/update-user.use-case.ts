@@ -1,8 +1,9 @@
+import { UserDTO } from '@/entities/dto/user.dto'
+
 import { UpdateUserRepositoryInterface } from './update-user.repository-interface'
-import { UpdateUserUseCaseInterface } from './update-user.use-case-interface'
 import { UpdateUserRequestInterface } from './update-user.request-interface'
 import { UpdateUserResponseInterface } from './update-user.response-interface'
-import { UserDTO } from '@/entities/dto/user.dto'
+import { UpdateUserUseCaseInterface } from './update-user.use-case-interface'
 
 export class UpdateUserUseCase implements UpdateUserUseCaseInterface {
   constructor(private readonly repository: UpdateUserRepositoryInterface) {}

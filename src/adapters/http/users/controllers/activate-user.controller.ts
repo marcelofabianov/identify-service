@@ -1,7 +1,8 @@
-import { ActivateUserUseCaseInterface } from '@/useCases/users/activate-user/activate-user.use-case-interface'
 import { ControllerInterface } from '@http/controller.interface'
-import { FastifyReply, FastifyRequest } from 'fastify'
 import { responseError } from '@http/response-error'
+import { FastifyReply, FastifyRequest } from 'fastify'
+
+import { ActivateUserUseCaseInterface } from '@/useCases/users/activate-user/activate-user.use-case-interface'
 
 export class ActivateUserController implements ControllerInterface {
   constructor(private readonly useCase: ActivateUserUseCaseInterface) {}

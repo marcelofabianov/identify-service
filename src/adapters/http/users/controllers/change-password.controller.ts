@@ -1,8 +1,10 @@
-import { ChangePasswordUseCaseInterface } from '@/useCases/users/change-password/change-password.use-case-interface'
 import { ControllerInterface } from '@http/controller.interface'
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { changePasswordRequestSchema } from '../requests/change-password.request'
 import { responseError } from '@http/response-error'
+import { FastifyReply, FastifyRequest } from 'fastify'
+
+import { ChangePasswordUseCaseInterface } from '@/useCases/users/change-password/change-password.use-case-interface'
+
+import { changePasswordRequestSchema } from '../requests/change-password.request'
 
 export class ChangePasswordController implements ControllerInterface {
   constructor(private readonly useCase: ChangePasswordUseCaseInterface) {}

@@ -1,5 +1,6 @@
 import { FastifyReply } from 'fastify'
 import { ZodError } from 'zod'
+
 import { ErrorHandle } from '@/errors/error-handle'
 
 export function responseError(error: unknown, reply: FastifyReply) {

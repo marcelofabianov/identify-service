@@ -1,6 +1,7 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
 import { ControllerInterface } from '@http/controller.interface'
 import { responseError } from '@http/response-error'
+import { FastifyReply, FastifyRequest } from 'fastify'
+
 import { FindUserUseCaseInterface } from '@/useCases/users/find-user/find-user.use-case-interface'
 
 export class FindUserController implements ControllerInterface {

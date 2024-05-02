@@ -1,7 +1,8 @@
 import { FastifyInstance } from 'fastify'
-import { UserUriEnum } from './user-uri.enum'
-import { RouterInterface } from '../router.interface'
+
 import { ControllerInterface } from '../controller.interface'
+import { RouterInterface } from '../router.interface'
+import { UserUriEnum } from './user-uri.enum'
 
 export class UserRouter implements RouterInterface {
   constructor(

@@ -1,8 +1,10 @@
 import * as argon2 from 'argon2'
+
 import { env } from '@/env'
-import { PasswordServiceInterface } from './password-service.interface'
 import { ErrorHandle } from '@/errors/error-handle'
 import { UserErrorEnum } from '@/errors/user.error-enum'
+
+import { PasswordServiceInterface } from './password-service.interface'
 
 export class PasswordService implements PasswordServiceInterface {
   private readonly hashOptions = {

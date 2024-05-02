@@ -1,4 +1,5 @@
 import { z } from 'zod'
+
 import { ErrorHandle } from './errors/error-handle'
 
 const envSchema = z.object({

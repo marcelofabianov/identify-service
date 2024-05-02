@@ -1,4 +1,5 @@
 import { UserInterface } from '@/entities/user.interface'
+
 import { FindAllUserRepositoryInterface } from './find-all-user.repository-interface'
 import {
   FindAllUserResponseInterface,

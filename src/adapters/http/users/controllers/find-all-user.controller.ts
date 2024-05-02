@@ -1,7 +1,8 @@
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { FindAllUserUseCaseInterface } from '@/useCases/users/find-all-user/find-all-user.use-case-interface'
 import { ControllerInterface } from '@http/controller.interface'
 import { responseError } from '@http/response-error'
+import { FastifyReply, FastifyRequest } from 'fastify'
+
+import { FindAllUserUseCaseInterface } from '@/useCases/users/find-all-user/find-all-user.use-case-interface'
 
 export class FindAllUserController implements ControllerInterface {
   constructor(private readonly useCase: FindAllUserUseCaseInterface) {}

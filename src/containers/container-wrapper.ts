@@ -1,4 +1,5 @@
 import { ErrorHandle } from '@/errors/error-handle'
+
 import { ContainerWrapperInterface } from './container-wrapper.interface'
 
 export class ContainerWrapper implements ContainerWrapperInterface {

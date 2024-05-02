@@ -1,7 +1,8 @@
-import { ContainerWrapperInterface } from './containers/container-wrapper.interface'
 import fastify, { FastifyInstance } from 'fastify'
-import { env } from './env'
+
 import { RouterInterface } from './adapters/http/router.interface'
+import { ContainerWrapperInterface } from './containers/container-wrapper.interface'
+import { env } from './env'
 
 const app: FastifyInstance = fastify({ logger: false })
 

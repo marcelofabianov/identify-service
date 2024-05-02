@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+
 import { ConnectionInterface } from './connection.interface'
 
 export class Connection implements ConnectionInterface {

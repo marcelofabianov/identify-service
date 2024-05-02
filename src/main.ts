@@ -1,10 +1,11 @@
-import { ContainerWrapper } from './containers/container-wrapper'
-import { serverStart } from './server'
-import { UserContainer } from './containers/user.container'
-import { Connection } from './adapters/database/connection'
 import { PrismaClient } from '@prisma/client'
 import { FastifyInstance } from 'fastify'
+
+import { Connection } from './adapters/database/connection'
+import { ContainerWrapper } from './containers/container-wrapper'
 import { ServiceContainer } from './containers/service.container'
+import { UserContainer } from './containers/user.container'
+import { serverStart } from './server'
 
 const conn = new Connection(new PrismaClient())
 

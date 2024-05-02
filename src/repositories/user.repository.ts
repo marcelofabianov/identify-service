@@ -1,10 +1,11 @@
-import { UserDTO } from '@/entities/dto/user.dto'
-import { UserRepositoryInterface } from './user.repository-interface'
 import { ConnectionInterface } from '@/adapters/database/connection.interface'
-import { UserErrorEnum } from '@/errors/user.error-enum'
-import { ErrorHandle } from '@/errors/error-handle'
-import { UserInterface } from '@/entities/user.interface'
+import { UserDTO } from '@/entities/dto/user.dto'
 import { User } from '@/entities/user'
+import { UserInterface } from '@/entities/user.interface'
+import { ErrorHandle } from '@/errors/error-handle'
+import { UserErrorEnum } from '@/errors/user.error-enum'
+
+import { UserRepositoryInterface } from './user.repository-interface'
 
 export class UserRepository implements UserRepositoryInterface {
   constructor(private readonly db: ConnectionInterface) {}

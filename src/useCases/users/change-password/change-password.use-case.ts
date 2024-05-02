@@ -1,9 +1,10 @@
 import { ErrorHandle } from '@/errors/error-handle'
+import { UserErrorEnum } from '@/errors/user.error-enum'
+
 import { ChangePasswordRepositoryInterface } from './change-password.repository-interface'
 import { ChangePasswordRequestInterface } from './change-password.request-interface'
 import { ChangePasswordServiceInterface } from './change-password.service-interface'
 import { ChangePasswordUseCaseInterface } from './change-password.use-case-interface'
-import { UserErrorEnum } from '@/errors/user.error-enum'
 
 export class ChangePasswordUseCase implements ChangePasswordUseCaseInterface {
   constructor(

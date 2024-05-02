@@ -1,8 +1,10 @@
-import { UpdateUserUseCaseInterface } from '@/useCases/users/update-user/update-user.use-case-interface'
 import { ControllerInterface } from '@http/controller.interface'
-import { FastifyReply, FastifyRequest } from 'fastify'
-import { updateUserRequestSchema } from '../requests/update-user.request'
 import { responseError } from '@http/response-error'
+import { FastifyReply, FastifyRequest } from 'fastify'
+
+import { UpdateUserUseCaseInterface } from '@/useCases/users/update-user/update-user.use-case-interface'
+
+import { updateUserRequestSchema } from '../requests/update-user.request'
 
 export class UpdateUserController implements ControllerInterface {
   constructor(private readonly useCase: UpdateUserUseCaseInterface) {}
